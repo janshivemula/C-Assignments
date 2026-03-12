@@ -1,41 +1,39 @@
-﻿using System.Reflection;
-
-namespace UniversityEnrollement
+﻿namespace BankAccount
 {
-    class Course
+    class BankAccountDetails
     {
-        public string coursename;
-          
+        public string AccountHolder;
+        public double Balance;
 
-    }
-    class OnlineCourse : Course
-    {
-        public void Enroll(string studentname)
+        public BankAccountDetails(string name, double balance)
         {
-            if (studentname != " ")
-                Console.WriteLine(studentname + "Enrolled in Online Course : " + coursename);
-            else
-                Console.WriteLine("Invalid student name");
+            AccountHolder = name;
+            Balance = balance;
         }
-    }
-    class InPersonCourse : Course
-    {
-        public void Enroll(string studentname)
+        public void Deposit(double amount)
         {
-            if (studentname != " ")
-                Console.WriteLine(studentname + "Enrolled in In - Person Course : " + coursename);
+            if(amount > 0)
+            {
+                Balance = Balance + amount;
+                Console.WriteLine(AccountHolder + " deposited " + amount);
+            }
             else
-                Console.WriteLine("Invalid student name");
+            {
+                Console.WriteLine("Invalid deposit amount");
+            }
         }
-    }
-    class LabCourse : Course
-    {
-        public void Enroll(string studentname)
+        public void Withdraw(double amount)
         {
-            if (studentname != " ")
-                Console.WriteLine(studentname + "Enrolled in Lab Course : " + coursename);
+            if (amount > 0 && amount <= Balance)
+            {
+                Balance = Balance - amount;
+                Console.WriteLine(AccountHolder + " withdrew " + amount);
+            }
             else
-                Console.WriteLine("Invalid student name");
+            {
+                Console.WriteLine("Invalid withdraw amount");
+            }
+
         }
     }
 }
