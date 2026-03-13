@@ -1,39 +1,52 @@
-﻿namespace BankAccount
+﻿namespace InOut
 {
-    class BankAccountDetails
+    class InOut
     {
-        public string AccountHolder;
-        public double Balance;
-
-        public BankAccountDetails(string name, double balance)
+        static void ShowResult(in int num, out int result )
         {
-            AccountHolder = name;
-            Balance = balance;
+            result = num * num;
         }
-        public void Deposit(double amount)
+        static int Sum(params int[] numbers)
         {
-            if(amount > 0)
+            int sum = 0;
+            for(int i =0; i< numbers.Length; i++)
             {
-                Balance = Balance + amount;
-                Console.WriteLine(AccountHolder + " deposited " + amount);
+                sum = sum + numbers[i];
+            }
+            return sum;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("POC on In and Out Variables");
+            int number = 5;
+            int result;
+            ShowResult(number, out result);
+            Console.WriteLine("Number : " + number);
+            Console.WriteLine("Result : " + result);
+            Console.WriteLine();
+
+            Console.WriteLine("POC on Params");
+            int total = Sum(12, 05, 18, 10);
+            Console.WriteLine("Sum : " + total);
+            Console.WriteLine();
+
+            Console.WriteLine("POC on Integer.TryParse()");
+            string input = "123";
+            int value;
+            if(int.TryParse(input , out value))
+            {
+                Console.WriteLine("Conversion Successful : " + value);
             }
             else
             {
-                Console.WriteLine("Invalid deposit amount");
+                Console.WriteLine("Invalid input given, give proper input");
             }
-        }
-        public void Withdraw(double amount)
-        {
-            if (amount > 0 && amount <= Balance)
-            {
-                Balance = Balance - amount;
-                Console.WriteLine(AccountHolder + " withdrew " + amount);
-            }
-            else
-            {
-                Console.WriteLine("Invalid withdraw amount");
-            }
+            Console.WriteLine();
+
+            Console.WriteLine("WriteLine using params");
+            Console.WriteLine("Name : {0}, Age : {1}", "Janaki", 23);
 
         }
+        
     }
 }
